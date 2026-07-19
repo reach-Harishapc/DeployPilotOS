@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id                 String    @id @default(cuid())
+  name               String
+  slug               String    @unique
+  autonomy           String    @default("notify")
+  rollbackConfidence Float     @default(0.8)
+  assistantId        String?
+  createdAt          DateTime  @default(now())
+  users              User[]
+  services           Service[]
+  cloudAccounts      CloudAccount[]
+}
+
+model User {
+  id             String       @id @default(cuid())
+  email          String       @unique
+  name           String?
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime     @default(now())
+}
+
+model Service {
+  id                 String       @id @default(cuid())
+  orgId              String
+  organization       Organization @relation(fields: [orgId], references: [id])
+  name               String
+  description        String?
+  environment        String       @default("production")
+  healthUrl          String?
+  checkInterval      Int          @default(30)
+  latencyThreshold   Int          @default(500)
+  errorRateThreshold Float        @default(0.05)
+  status             String       @default("healthy")
+  uptimePercent      Float        @default(100.0)
+  avgLatency         Float?
+  currentErrorRate   Float?
+  logWebhookToken    String       @unique @default(cuid())
+  slackWebhook       String?
+  notifyEmails       String?
+  platforms          String?
+  isPublic           Boolean      @default(false)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  incidents          Incident[]
+  metrics            Metric[]
+  deploys            Deploy[]
+  runbooks           Runbook[]
+  logs               LogEntry[]
+  cloudResources     CloudResource[]
+}
+
+model CloudAccount {
+  id              String          @id @default(cuid())
+  organizationId  String
+  organization    Organization    @relation(fields: [organizationId], references: [id])
+  provider        String          // aws | azure | gcp | oci
+  name            String
+  externalId      String          // account ID, subscription ID, project ID, tenancy OCID
+  credentialRef   String?         // secret-manager reference; never raw cloud credentials
+  defaultRegion   String?
+  isEnabled       Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  resources       CloudResource[]
+
+  @@unique([organizationId, provider, externalId])
+}
+
+model CloudResource {
+  id             String       @id @default(cuid())
+  cloudAccountId String
+  cloudAccount   CloudAccount @relation(fields: [cloudAccountId], references: [id])
+  serviceId      String
+  service        Service      @relation(fields: [serviceId], references: [id])
+  provider       String
+  resourceType   String       // ecs-service | aks-deployment | cloud-run | oci-container-instance
+  externalId     String
+  region         String?
+  metadata       String?      // non-secret JSON metadata only
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([cloudAccountId, externalId])
+  @@index([serviceId])
+}
+
+model Incident {
+  id                  String          @id @default(cuid())
+  serviceId           String
+  service             Service         @relation(fields: [serviceId], references: [id])
+  title               String
+  severity            String          @default("P2")
+  status              String          @default("open")
+  rootCause           String?
+  rootCauseConfidence Float?
+  triggerMetric       String?
+  triggerValue        String?
+  diagnosis           String?
+  recommendedActions  String?
+  runbookId           String?
+  actionsLog          String?
+  resolvedBy          String?
+  mttr                Int?
+  postMortem          String?
+  voiceTranscript     String?
+  openedAt            DateTime        @default(now())
+  resolvedAt          DateTime?
+  updatedAt           DateTime        @updatedAt
+  events              IncidentEvent[]
+}
+
+model IncidentEvent {
+  id         String   @id @default(cuid())
+  incidentId String
+  incident   Incident @relation(fields: [incidentId], references: [id])
+  type       String
+  content    String
+  data       String?
+  actor      String   @default("agent")
+  timestamp  DateTime @default(now())
+}
+
+model Runbook {
+  id              String   @id @default(cuid())
+  serviceId       String
+  service         Service  @relation(fields: [serviceId], references: [id])
+  name            String
+  description     String
+  steps           String
+  embedding       String?
+  lastUsed        DateTime?
+  useCount        Int      @default(0)
+  isEnabled       Boolean  @default(true)
+  requireApproval Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Metric {
+  id            String   @id @default(cuid())
+  serviceId     String
+  service       Service  @relation(fields: [serviceId], references: [id])
+  timestamp     DateTime @default(now())
+  latencyMs     Float?
+  errorRate     Float?
+  cpuPercent    Float?
+  memPercent    Float?
+  requestCount  Int?
+  customMetrics String?
+}
+
+model Deploy {
+  id         String   @id @default(cuid())
+  serviceId  String
+  service    Service  @relation(fields: [serviceId], references: [id])
+  version    String
+  commitSha  String?
+  commitMsg  String?
+  author     String?
+  platform   String?
+  status     String   @default("success")
+  deployedAt DateTime @default(now())
+  rollbackOf String?
+}
+
+model LogEntry {
+  id        String   @id @default(cuid())
+  serviceId String
+  service   Service  @relation(fields: [serviceId], references: [id])
+  level     String   @default("INFO")
+  message   String
+  source    String?
+  metadata  String?
+  timestamp DateTime @default(now())
+}

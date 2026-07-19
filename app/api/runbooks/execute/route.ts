@@ -1,0 +1,3 @@
+import { NextResponse } from "next/server";
+import { executeRunbook } from "@/src/lib/monitoring/runbook-executor";
+export async function POST(request: Request) { const body = await request.json(); if (!Array.isArray(body.actions) || !body.policy?.provider) return NextResponse.json({ error: "actions and policy.provider are required" }, { status: 400 }); if (!["aws", "azure", "gcp", "oci"].includes(body.policy.provider)) return NextResponse.json({ error: "Unsupported provider" }, { status: 400 }); const result = await executeRunbook(body.actions, { provider: body.policy.provider, autonomy: body.policy.autonomy || "ask", requireApproval: Boolean(body.policy.requireApproval) }); return NextResponse.json({ data: result }); }

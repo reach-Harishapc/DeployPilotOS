@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DeployPilotOS
 
-## Getting Started
+DeployPilotOS is an autonomous AI DevOps agent demo: it detects production anomalies, investigates logs and deploys, recommends recovery actions, and demonstrates a complete auto-resolution flow.
 
-First, run the development server:
+## Run the judge demo
 
 ```bash
+npm install
+npm run db:generate
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/demo](http://localhost:3000/demo), then click **Simulate incident**. The P1 incident opens, the investigation narrates its evidence, and the recovery auto-resolves in roughly nine seconds.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Demo mode is enabled by default (`DEMO_MODE=true` in `.env`) and needs no service accounts or API key.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## AI diagnosis engine
 
-## Learn More
+`POST /api/diagnose` returns a strict structured diagnosis: root cause, confidence, evidence, ordered actions, and investigation narration. In demo mode it uses the seeded deterministic incident; when `DEMO_MODE=false` and `OPENAI_API_KEY` is set, it calls the OpenAI Responses API with JSON Schema structured output.
 
-To learn more about Next.js, take a look at the following resources:
+Configuration is documented in [`.env.example`](.env.example). The default model is configurable with `OPENAI_MODEL`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Persistence
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The complete SQLite Prisma schema is in [`prisma/schema.prisma`](prisma/schema.prisma), covering organizations, users, services, incidents and events, runbooks, metrics, deploys, and logs. Run `npm run db:push` to create the local database after generating the client.
 
-## Deploy on Vercel
+## Cloud control plane
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+DeployPilotOS has a provider-neutral execution boundary for **AWS, Azure, Google Cloud, and Oracle Cloud Infrastructure (OCI)**. Cloud credentials are represented only by a secret-manager reference; raw credentials are never stored in the database. The normalized `CloudAccount` and `CloudResource` models keep multi-cloud services queryable and scalable.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Capability | API | Notes |
+| --- | --- | --- |
+| Service registry | `GET/POST /api/services` | Multi-service inventory with provider validation |
+| Cloud discovery | `GET /api/cloud/resources?provider=aws|azure|gcp|oci` | Maps providers to ECS, AKS, Cloud Run, or OCI resources |
+| Anomaly detection | `POST /api/monitoring/detect` | Rolling baseline plus latency and error-rate thresholds |
+| Recovery execution | `POST /api/runbooks/execute` | Restart, scale, rollback, and health-check actions gated by autonomy policy |
+| Platform health | `GET /api/health` | Liveness endpoint for cloud load balancers |
+
+In demo mode the adapters return safe simulated cloud results. Production adapters should receive workload identity / IAM role references via `CloudAccount.credentialRef`, rather than access keys in environment variables.

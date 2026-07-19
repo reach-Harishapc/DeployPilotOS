@@ -1,0 +1,8 @@
+export const AGENT_TOOLS = [
+  { type: "function", name: "fetch_logs", description: "Fetch recent logs for analysis", parameters: { type: "object", properties: { serviceId: { type: "string" }, lines: { type: "number" }, level: { type: "string", enum: ["ERROR", "WARN", "INFO", "DEBUG", "ALL"] } }, required: ["serviceId"], additionalProperties: false } },
+  { type: "function", name: "get_recent_deploys", description: "Check deploy history for regressions", parameters: { type: "object", properties: { serviceId: { type: "string" }, hours: { type: "number" } }, required: ["serviceId"], additionalProperties: false } },
+  { type: "function", name: "restart_service", description: "Restart a service through its configured integration", parameters: { type: "object", properties: { serviceId: { type: "string" }, reason: { type: "string" } }, required: ["serviceId", "reason"], additionalProperties: false } },
+  { type: "function", name: "rollback_deploy", description: "Roll back to a stable deployment", parameters: { type: "object", properties: { serviceId: { type: "string" }, targetVersion: { type: "string" }, reason: { type: "string" } }, required: ["serviceId", "reason"], additionalProperties: false } },
+  { type: "function", name: "run_health_check", description: "Run and report a health check", parameters: { type: "object", properties: { serviceId: { type: "string" } }, required: ["serviceId"], additionalProperties: false } },
+  { type: "function", name: "scale_service", description: "Change replica count", parameters: { type: "object", properties: { serviceId: { type: "string" }, replicas: { type: "number" }, reason: { type: "string" } }, required: ["serviceId", "replicas", "reason"], additionalProperties: false } },
+] as const;

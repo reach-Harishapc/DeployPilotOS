@@ -1,0 +1,4 @@
+import { NextResponse } from "next/server";
+import { demoServices } from "@/src/lib/demo-store";
+export async function GET() { return NextResponse.json({ data: demoServices, mode: process.env.DEMO_MODE === "true" ? "demo" : "live" }); }
+export async function POST(request: Request) { const body = await request.json(); if (!body.name || !body.provider) return NextResponse.json({ error: "name and provider are required" }, { status: 400 }); if (!["aws", "azure", "gcp", "oci"].includes(body.provider)) return NextResponse.json({ error: "provider must be aws, azure, gcp, or oci" }, { status: 400 }); const service = { id: crypto.randomUUID(), name: body.name, environment: body.environment || "production", provider: body.provider, status: "unknown", latencyThreshold: body.latencyThreshold || 500, errorRateThreshold: body.errorRateThreshold || .05 }; demoServices.push(service); return NextResponse.json({ data: service }, { status: 201 }); }
