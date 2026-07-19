@@ -63,4 +63,14 @@ While traditional developer AI tools are just "chatbots that write code," Deploy
 - **Target Integrations (Architected for):** Kubernetes, AWS EKS, Datadog, PagerDuty, Slack, Vercel.
 
 ## License
-MIT License.
+
+**Custom Restrictive Source-Available License (Non-Commercial & Restricted Use)**
+
+Copyright (c) 2026 Harisha P C (harishapc.com). All rights reserved.
+
+Permission is hereby granted exclusively to the judges and organizers of OpenAI Build Week 2026 for the sole purpose of evaluation, testing, and review. 
+
+### Terms and Restrictions:
+*   **Absolute Commercial Prohibition:** This software, its source code, its architecture diagrams, and any derived entities may not be used, executed, or deployed for any commercial purposes, business workflows, enterprise environments, or profit-generating activities.
+*   **No Copying or Replication:** You are strictly prohibited from copying, cloning, duplicating, modifying, or redistributing this source code or any part of this repository for public or private use without explicit, prior written permission from the copyright holder.
+*   **No Unauthorized Exploitation:** All rights not explicitly granted under this hackathon evaluation clause are entirely reserved by the author.
