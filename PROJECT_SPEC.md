@@ -1,8 +1,8 @@
-# 🚀 DeployPilotOSOS — Autonomous AI DevOps Agent
+# DeployPilotOSOS — Autonomous AI DevOps Agent
 ### OpenAI Build Week 2026 — Developer Tools Track
 ---
 
-## 💡 The Big Idea
+## The Big Idea
 
 **DeployPilotOS** is the world's first **autonomous AI DevOps agent** that monitors your production apps, diagnoses incidents in real time, runs recovery playbooks, and rolls back bad deploys — all without a human needing to lift a finger.
 
@@ -12,7 +12,7 @@ Every dev team has experienced this: 3 AM, production is down, you're staring at
 
 ---
 
-## 🎯 Problem Statement
+## Problem Statement
 
 Production incidents are expensive:
 - Average cost of downtime: **$5,600/minute** (Gartner)
@@ -26,7 +26,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 
 ---
 
-## 🔥 OpenAI APIs Used — Maximum Technical Score
+## OpenAI APIs Used — Maximum Technical Score
 
 | OpenAI API | How DeployPilotOS Uses It |
 |---|---|
@@ -41,9 +41,9 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 
 ---
 
-## 🧩 Core Features (All 7)
+## Core Features
 
-### 1. 🔴 Real-Time Anomaly Detection
+### 1.Real-Time Anomaly Detection
 - DeployPilotOS continuously polls your services' metrics via configurable adapters:
   - HTTP health endpoints
   - Response time / latency spikes
@@ -54,7 +54,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 - When anomaly detected → **Incident opened automatically**
 - Severity scored: `P1 (Critical) | P2 (High) | P3 (Medium) | P4 (Low)`
 
-### 2. 🔬 Incident Auto-Diagnosis
+### 2.Incident Auto-Diagnosis
 - When an incident opens, the **GPT-5.6 Diagnosis Agent** activates:
   - Fetches recent logs from the affected service (last 500 lines)
   - Fetches recent deploy history (what changed recently?)
@@ -68,7 +68,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
   - Recommended actions (ordered by likelihood of success)
 - Streams in real-time to the UI as the AI thinks
 
-### 3. ⚙️ Autonomous Runbook Execution
+### 3.Autonomous Runbook Execution
 - Pre-define runbooks in plain English (e.g., "If the API is slow, restart the web workers")
 - DeployPilotOS matches incidents to runbooks using Embeddings (semantic matching)
 - Agent executes runbook steps autonomously via **Function Calling**:
@@ -83,7 +83,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 - Each step is **safety-screened** via Moderation API before execution
 - Full audit trail of every action taken
 
-### 4. 🔄 Auto Rollback
+### 4.Auto Rollback
 - DeployPilotOS tracks every deploy with timestamps and version IDs
 - When diagnosis confidence is high (>80%) and root cause is "bad deploy":
   - Proposes rollback with explanation: "Deploy v2.3.1 (pushed 14 minutes ago) introduced a breaking DB migration. Rolling back to v2.3.0."
@@ -92,7 +92,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
   - Verifies health after rollback (runs health check suite)
   - Marks incident resolved if health restored
 
-### 5. 📣 Slack / Notification Integration
+### 5.Slack / Notification Integration
 - Every incident triggers a rich **Slack notification** written by GPT-5.6:
   - Incident title + severity badge
   - Auto-diagnosis summary (plain English, no jargon)
@@ -103,7 +103,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 - **Resolution message** with root cause + actions taken + time to resolve
 - Also supports: Email, PagerDuty webhook, Discord, Microsoft Teams
 
-### 6. 🎙️ Voice Incident Commander (Realtime API — MOST IMPRESSIVE)
+### 6.Voice Incident Commander (Realtime API — MOST IMPRESSIVE)
 - During a P1/P2 incident, click **"Start War Room"**
 - Full-screen voice UI powered by **OpenAI Realtime API**
 - Talk to DeployPilotOS like you're on a conference call:
@@ -118,7 +118,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 - Full transcript saved to incident timeline
 - **This is the demo moment that wins the hackathon**
 
-### 7. 🌐 Multi-Service Support
+### 7.Multi-Service Support
 - Register unlimited services in the dashboard
 - Each service has:
   - Name + environment (production/staging/dev)
@@ -131,7 +131,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 - Incident correlation: "API-Service is down because DB-Service (its dependency) is down"
 - **Global status page** — public-facing status page auto-generated and auto-updated
 
-### BONUS: 📋 AI Post-Mortem Generator
+### BONUS: AI Post-Mortem Generator
 - After incident resolves, DeployPilotOS automatically drafts the post-mortem:
   - Timeline of events
   - Root cause analysis
@@ -141,7 +141,7 @@ Current tools (Datadog, PagerDuty, Grafana) send **alerts** — then leave human
 
 ---
 
-## 🖥️ Application Screens — Detailed UI Spec
+## Application Screens — Detailed UI Spec
 
 ---
 
@@ -284,7 +284,7 @@ This is a live, streaming feed of the AI agent working:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🤖 DeployPilotOS Agent — Incident Investigation
+DeployPilotOS Agent — Incident Investigation
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [23:47:03] Starting investigation...
@@ -376,8 +376,6 @@ This is a live, streaming feed of the AI agent working:
 ---
 
 ### SCREEN 5: Voice Incident Commander (`/incidents/[id]/voice`)
-
-**This is the demo showstopper. Judges have never seen this.**
 
 **Layout:** Full-screen takeover — like a video call interface
 
@@ -540,7 +538,7 @@ This is a live, streaming feed of the AI agent working:
 
 ---
 
-## 🏗️ Complete File & Folder Architecture
+## Complete File & Folder Architecture
 
 ```
 DeployPilotOS/
@@ -818,7 +816,7 @@ DeployPilotOS/
 
 ---
 
-## 🗄️ Database Schema (Prisma — SQLite)
+##  Database Schema (Prisma — SQLite)
 
 ```prisma
 // prisma/schema.prisma
@@ -974,7 +972,7 @@ model LogEntry {
 
 ---
 
-## 🤖 GPT Agent Design — The Brain
+## GPT Agent Design — The Brain
 
 ### Diagnosis Agent Prompt
 ```typescript
@@ -1294,7 +1292,7 @@ Use specific numbers and timestamps when possible.
 
 ---
 
-## ⚙️ Environment Variables
+##  Environment Variables
 
 ```bash
 # .env.local
@@ -1325,7 +1323,7 @@ DEMO_MODE=true       # Enables simulated metrics (no real services needed)
 
 ---
 
-## 🚀 Setup Instructions (Judges Can Run in 3 Commands)
+##  Setup Instructions
 
 ```bash
 # 1. Clone and install
@@ -1352,7 +1350,7 @@ The demo mode pre-loads:
 
 ---
 
-## 📦 Package Dependencies
+## Package Dependencies
 
 ```json
 {
@@ -1396,60 +1394,6 @@ The demo mode pre-loads:
 
 ---
 
-## 🏆 Why DeployPilotOS Wins Every Judging Category
-
-| Criterion | DeployPilotOS's Edge |
-|---|---|
-| **Technological Implementation** | GPT-5.6 as reasoning agent, Realtime API voice, Function Calling for real actions, Embeddings for runbook matching, Streaming diagnosis, Structured Outputs, Assistants API memory, TTS, Moderation — fully agentic, not just chat |
-| **Design** | War-room aesthetic is immediately impressive. Streaming AI investigation feed is unlike anything seen. Voice Commander is a jaw-dropping demo moment. |
-| **Potential Impact** | $5,600/minute downtime cost. Every developer and every company needs this. Multi-billion dollar TAM. Immediately commercially viable. |
-| **Quality of Idea** | Existing tools (Datadog, PagerDuty) only alert — they don't act. DeployPilotOS is the first agent that closes the loop autonomously. Genuinely novel category creation. |
-
----
-
-## 📹 Demo Video Script (2:50 min — WINNING STRUCTURE)
-
-**[0:00–0:15]** — Hook: Show 3 AM slack alert, blurry eyes developer, wall of logs. `"This happens to every dev team. DeployPilotOS ends this."`
-
-**[0:15–0:35]** — Dashboard: Show services, all green. Click `"Simulate Incident"` button. Watch api-service flip to red. P1 alert appears.
-
-**[0:35–1:20]** — Incident Investigation Feed: Watch the AI stream its thoughts in real-time. `"I'm seeing connection pool timeouts starting at 23:46:51... checking deploys... found regression in v2.4.1... matched runbook... executing step 1 of 3..."` This is the core wow moment. Let it breathe.
-
-**[1:20–1:40]** — Auto-Rollback: Show AI detecting it was a bad deploy. Click of a button (or fully autonomous) — watch rollback trigger, health check pass, incident resolve. `"Total time: 12 seconds."`
-
-**[1:40–2:10]** — Voice Commander: `"Now let's try it with voice."` Click Start War Room. Live conversation: `"What's the status?" / "What did you do?" / "Send a Slack update to the team."` AI speaks back, takes real actions.
-
-**[2:10–2:25]** — Slack notification: Show the beautiful AI-written Slack message sent automatically.
-
-**[2:25–2:50]** — Wrap: `"DeployPilotOS uses GPT-5.6, Realtime API, Function Calling, Embeddings, Structured Outputs, TTS — the complete OpenAI stack. This isn't a dashboard. It's the SRE engineer that never sleeps."` Show post-mortem auto-generated.
-
----
-
-## 📋 Submission Checklist
-
-- [ ] Next.js app running locally + deployed to Vercel
-- [ ] All 7 features implemented and working
-- [ ] Demo mode at `/demo` — works with only `OPENAI_API_KEY`
-- [ ] `"Simulate Incident"` button gives judges the full experience in 60 seconds
-- [ ] Seed data: 14 days of metrics + incident history
-- [ ] README.md: 3-command setup
-- [ ] YouTube video: < 3 min, public, audio explaining Codex + GPT-5.6 usage
-- [ ] GitHub repo public (or shared with judges)
-- [ ] Devpost form submitted
-- [ ] `/feedback` Codex Session ID captured
-- [ ] Track: Developer Tools
-- [ ] Highlighted how Codex built this entire codebase
-
----
-
-## 📝 How Codex Was Used (Fill During Build)
-
-> **Document as you build — required for submission:**
-> - Codex Session ID: `[get from /feedback]`
-> - Files/features Codex generated: `[list all]`
-> - Most impressive Codex moment: `[best code gen example]`
-> - Architectural decisions Codex suggested: `[list]`
-> - Time estimate: From spec → working app in ~X hours
 
 ---
 
