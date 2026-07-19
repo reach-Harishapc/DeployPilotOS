@@ -1,4 +1,4 @@
-# DeployPilotOSOS — Autonomous AI DevOps Agent
+# DeployPilotOS — Autonomous AI DevOps Agent
 ### OpenAI Build Week 2026 — Developer Tools Track
 ---
 
