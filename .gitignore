@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+DeployPilot_Architecture_Presentation.md
+DeployPilot_Technical_Architecture.md
