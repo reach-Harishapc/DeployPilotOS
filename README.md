@@ -1,4 +1,4 @@
-# 🚀 DeployPilotOS: Autonomous AI DevOps Agent
+#  DeployPilotOS: Autonomous AI DevOps Agent
 **Category:** Developer Tools  
 **OpenAI Build Week 2026**
 
@@ -8,7 +8,7 @@ Instead of waking up at 3 AM to stare at a wall of logs, DeployPilotOS acts as t
 
 ---
 
-## 🛠️ How to Test & Evaluate (For Judges)
+##  How to Test & Evaluate (For Judges)
 
 We have built a **zero-setup simulated Sandbox environment** directly into the application so judges can experience a live 3 AM production outage resolution without needing to connect real Kubernetes clusters or AWS credentials!
 
@@ -39,7 +39,7 @@ npm run dev
 
 ---
 
-## 🧠 How We Used Codex & GPT-5.6 (Core Judging Criteria)
+##  How We Used Codex & GPT-5.6 (Core Judging Criteria)
 
 This project was conceived and built specifically to showcase the reasoning power of the latest OpenAI models in enterprise environments.
 
@@ -58,9 +58,9 @@ While traditional developer AI tools are just "chatbots that write code," Deploy
 
 ---
 
-## 💻 Supported Platforms
+##  Supported Platforms
 - **Control Plane:** Next.js 14, React, TailwindCSS. (Can be run anywhere Node is supported).
 - **Target Integrations (Architected for):** Kubernetes, AWS EKS, Datadog, PagerDuty, Slack, Vercel.
 
-## 📜 License
+##  License
 MIT License.
