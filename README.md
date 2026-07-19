@@ -1,4 +1,4 @@
-#  DeployPilotOS: Autonomous AI DevOps Agent
+# DeployPilotOS: Autonomous AI DevOps Agent
 **Category:** Developer Tools  
 **OpenAI Build Week 2026**
 
@@ -8,7 +8,7 @@ Instead of waking up at 3 AM to stare at a wall of logs, DeployPilotOS acts as t
 
 ---
 
-##  How to Test & Evaluate (For Judges)
+## Zero-Setup Simulated Sandbox Environment
 
 We have built a **zero-setup simulated Sandbox environment** directly into the application so judges can experience a live 3 AM production outage resolution without needing to connect real Kubernetes clusters or AWS credentials!
 
@@ -39,7 +39,7 @@ npm run dev
 
 ---
 
-##  How We Used Codex & GPT-5.6 (Core Judging Criteria)
+## How We Used Codex & GPT-5.6
 
 This project was conceived and built specifically to showcase the reasoning power of the latest OpenAI models in enterprise environments.
 
@@ -49,7 +49,7 @@ Codex acted as our lead frontend and architecture engineer. We used Codex to rap
 - **Architectural Decisions:** When we encountered Hydration Mismatch errors due to browser extensions, Codex instantly identified the issue and implemented `suppressHydrationWarning` at the Next.js root layout.
 - **Data Simulation:** Codex wrote the complex `setInterval` math and React Hooks to simulate live, realistic-looking telemetry graphs and streaming log analysis without requiring a real backend.
 
-### How GPT-5.6 Powers the Agent (Technical Implementation)
+### How GPT-5.6 Powers the Agent
 While traditional developer AI tools are just "chatbots that write code," DeployPilotOS stretches the limits of GPT-5.6 as an **autonomous execution engine**. 
 
 1. **Structured Outputs:** When telemetry spikes, the incident payload (recent logs and git commit diffs) is fed to GPT-5.6, enforcing a strict JSON schema that outputs a deterministic `rootCause` and `confidenceScore`.
@@ -58,9 +58,9 @@ While traditional developer AI tools are just "chatbots that write code," Deploy
 
 ---
 
-##  Supported Platforms
+## Supported Platforms
 - **Control Plane:** Next.js 14, React, TailwindCSS. (Can be run anywhere Node is supported).
 - **Target Integrations (Architected for):** Kubernetes, AWS EKS, Datadog, PagerDuty, Slack, Vercel.
 
-##  License
+## License
 MIT License.
