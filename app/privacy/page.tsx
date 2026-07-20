@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
       </div>
       
       <div className="flex flex-col gap-6 text-zinc-400 text-sm leading-relaxed relative z-10">
-        <p className="text-zinc-500">Last updated: October 14, 2026</p>
+        <p className="text-zinc-500">Last updated: July 20, 2026</p>
         
         <h2 className="text-xl font-bold text-white mt-4 tracking-tight">1. Information Collection</h2>
         <p>
