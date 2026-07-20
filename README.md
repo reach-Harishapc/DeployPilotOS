@@ -9,7 +9,8 @@ Instead of waking up at 3 AM to stare at a wall of logs, DeployPilotOS acts as t
 ---
 ## Demo
 
-[![DeployPilotOS Demo](https://img.youtube.com/vi/JJqxE2y_i2U/0.jpg)](https://www.youtube.com/watch?v=JJqxE2y_i2U)
+[Watch the DeployPilotOS Demo on YouTube](https://www.youtube.com/watch?v=JJqxE2y_i2U)
+
 ---
 
 ## Zero-Setup Simulated Sandbox Environment
