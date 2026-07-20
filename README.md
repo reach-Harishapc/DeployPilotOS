@@ -7,6 +7,10 @@ DeployPilotOS is an autonomous System Reliability Engineering (SRE) agent that m
 Instead of waking up at 3 AM to stare at a wall of logs, DeployPilotOS acts as the ultimate on-call engineer: detecting anomalies, diagnosing the root cause using **GPT-5.6**, and executing automated YAML runbooks to mitigate downtime in seconds.
 
 ---
+## Demo
+
+[![DeployPilotOS Demo](https://img.youtube.com/vi/JJqxE2y_i2U/0.jpg)](https://www.youtube.com/watch?v=JJqxE2y_i2U)
+---
 
 ## Zero-Setup Simulated Sandbox Environment
 
